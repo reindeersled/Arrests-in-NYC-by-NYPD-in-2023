@@ -13,8 +13,10 @@
 
 <h3>Data cleansing</h3>
 <ol>
-    <li>Remove unneccessary data that the general public would not understand, such as law codes, jurisdiction codes, and classification codes using excel.</li>
-    <li>Convert the trimmed dataset into a json object using <a href="https://github.com/reindeersled/Arrests-in-NYC-by-NYPD-in-2023/blob/main/data/format_data.py">format_data.py</a></li>
+    <li>A data set was downloaded from NYC OpenData.</li>
+    <li>Google sheets was used to remove columns of unneccessary data that the general public would not understand, like law codes.</li>
+    <li>A useful dicionary-based data structure was designed in order to make all necessary data organized and accessible.</li>
+    <li>A python program (<a href="https://github.com/reindeersled/Arrests-in-NYC-by-NYPD-in-2023/blob/main/data/format_data.py">format_data.py</a>) was created to read the .csv line-by-line to create and save the dictionary as a .json file.</li>
 </ol>
 
 <text>All data is from NYC OpenData.</text>
