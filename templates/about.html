@@ -16,13 +16,26 @@
 
     <text>Every year, thousands of people are arrested in NYC alone. This project seeks to map the arrests that occurred by NYPD in 2023, providing details about the perpetrator and the crime. Using this data, and with the help of infographics, an accurate representation of crime rates in each borrow can be conveyed and compared.</text>
 
-    <h3>Data cleansing</h3>
+    <h4>Data cleansing</h4>
     <ol>
         <li>A data set was downloaded from NYC OpenData.</li>
         <li>Google sheets was used to remove columns of unneccessary data that the general public would not understand, like law codes.</li>
         <li>A useful dicionary-based data structure was designed in order to make all necessary data organized and accessible.</li>
         <li>A python program (<a href="https://github.com/reindeersled/Arrests-in-NYC-by-NYPD-in-2023/blob/main/data/format_data.py">format_data.py</a>) was created to read the .csv line-by-line to create and save the dictionary as a .json file.</li>
     </ol>
+
+    <h4>Vocabulary</h4>
+    <ul>
+      <li>Felony: most serious type of criminal offense and carry possible sentences anywhere from a year to life in prison.</li>
+      <li>Misdemeanor: more serious than violations but less severe than felonies, can carry up to a year in jail.</li>
+      <li>Violation: petty offenses that are typically punishable by fines, but not jail time. </li>
+    </ul>
+
+    <h4>Macro</h4>
+    <img src="/macropage.jpeg" width="400" height="400">
+
+    <h4>Micro</h4>
+    <img src="/micropage.jpeg" width="400" height="400">
 
     <div id="footer">
       {% include 'footer.html' %}

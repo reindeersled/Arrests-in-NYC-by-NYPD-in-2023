@@ -13,45 +13,29 @@ def index():
 
     f.close()
 
-    boroughs = ["Bronx", "Brooklyn", "Manhattan", "Queens", "Staten_Island"]
+    boroughs = ["bronx", "brooklyn", "manhattan", "queens", "staten_island"]
 
     dictionary = {}
     for borough in boroughs:
         dictionary[borough] = []
 
     for id_key in data:
-        print(data[id_key][3]) #THE BOROUGH CODE
+        if data[id_key][3] == "B":
+            dictionary["bronx"].append(data[id_key])
+        elif data[id_key][3] == "S":
+            dictionary["staten_island"].append(data[id_key])
+        elif data[id_key][3] == "K":
+            dictionary["brooklyn"].append(data[id_key])
+        elif data[id_key][3] == "M":
+            dictionary["manhattan"].append(data[id_key])
+        elif data[id_key][3] == "Q":
+            dictionary["queens"].append(data[id_key]) 
 
-        if data[id_key][3] 
+    return render_template('index.html', boroughs=boroughs)
 
-
-
-        # for id in data: #those are each individual arrests
-        #     arrest = id.split(",")
-        #     print(arrest)
-            
-        #     if arrest[3] == "B":
-        #         dictionary["Bronx"].append(arrest)
-        #     elif arrest[3] == "S":
-        #         dictionary["Staten_Island"].append(arrest)
-        #     elif arrest[3] == "K":
-        #         dictionary["Brooklyn"].append(arrest)
-        #     elif arrest[3] == "M":
-        #         dictionary["Manhattan"].append(arrest)
-        #     elif arrest[3] == "Q":
-        #         dictionary["Queens"].append(arrest) 
-
-    print(dictionary)
-        
-
-
-
-
-    return render_template('index.html')
-
-@app.route('/index')
-def home():
-    return render_template('index.html')
+@app.route('/about')
+def about():
+    return render_template('/about.html')
 
 @app.route('/micro/bronx')
 def bronx(): #ok. need a seperate thing for each borough??
