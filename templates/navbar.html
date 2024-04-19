@@ -19,11 +19,9 @@
                 Boroughs
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="/micro/bronx">Bronx</a></li>
-                <li><a class="dropdown-item" href="/micro/brooklyn">Brooklyn</a></li>
-                <li><a class="dropdown-item" href="/micro/manhattan">Manhattan</a></li>
-                <li><a class="dropdown-item" href="/micro/queens">Queens</a></li>
-                <li><a class="dropdown-item" href="/micro/staten_island">Staten Island</a></li>
+                {% for borough in boroughs %}
+                  <li><a class="dropdown-item" href="/micro/{{borough}}">{{borough}}</a></li>
+                {% endfor %}
               </ul>
           </div>
           </li>

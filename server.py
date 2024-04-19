@@ -31,14 +31,16 @@ def index():
         elif data[id_key][3] == "Q":
             dictionary["queens"].append(data[id_key]) 
 
-    return render_template('index.html', boroughs=boroughs)
+    return render_template('index.html', boroughs=boroughs, dict=dictionary)
 
 @app.route('/about')
 def about():
     return render_template('/about.html')
 
-@app.route('/micro/bronx')
-def bronx(): #ok. need a seperate thing for each borough??
-    return render_template('/micro/bronx.html')
+@app.route('/micro/<borough>')
+def micro(borough):
+    boroughs = ["bronx", "brooklyn", "manhattan", "queens", "staten_island"]
+
+    return render_template('/micro/<borough>.html', boroughs=boroughs)
 
 app.run(debug=True)
