@@ -1,5 +1,5 @@
-<svg viewBox="0 0 700 700" >
+<svg viewBox="0 0 400 400">
 
-    <circle r="300" cx="800" cy="0" fill="blue" />
+    <circle r="70" cx="80" cy="80" fill="blue" />
 
 </svg>
