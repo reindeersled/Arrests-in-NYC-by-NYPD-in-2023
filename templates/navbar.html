@@ -20,7 +20,7 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 {% for borough in boroughs %}
-                  <li><a class="dropdown-item" href="/micro/{{borough}}">{{borough}}</a></li>
+                  <li><a class="dropdown-item" href="/micro/{{borough}}" borough="{{borough}}" >{{borough}}</a></li>
                 {% endfor %}
               </ul>
           </div>
