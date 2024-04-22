@@ -35,12 +35,51 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('/about.html')
+    boroughs = ["bronx", "brooklyn", "manhattan", "queens", "staten_island"]
+    
+    return render_template('/about.html', boroughs=boroughs)
 
 @app.route('/micro/<borough>')
 def micro(borough):
     boroughs = ["bronx", "brooklyn", "manhattan", "queens", "staten_island"]
 
-    return render_template('/micro/<borough>.html', boroughs=boroughs)
+    f = open("data/Excel_dataset.json", "r")
+    data = json.load(f)
+
+    f.close()
+
+    letter=""
+
+    if borough=="bronx":
+        letter="B"
+    if borough=="brooklyn":
+        letter="K"
+    if borough=="queens":
+        letter="Q"
+    if borough=="manhattan":
+        letter="M"
+    if borough=="staten_island":
+        letter="S"
+
+    bor_dictionary = {}
+
+    for id_key in data:
+        if data[id_key][3]==letter:
+            bor_dictionary[id_key] = data[id_key]
+
+    details=["ARREST_DATE","OFNS_DESC","LAW_CAT_CD","ARREST_BORO","AGE_GROUP","PERP_SEX","PERP_RACE","X_COORD_CD","Y_COORD_CD","Latitude","Longitude"]
+    
+    dictionary={}
+    
+    for id in bor_dictionary:
+        for detail_id in range(0, len(details)):
+            if details[detail_id] not in dictionary.keys():
+                dictionary[details[detail_id]] = []
+                dictionary[details[detail_id]].append(bor_dictionary[id][detail_id])
+            else:
+                dictionary[details[detail_id]].append(bor_dictionary[id][detail_id])
+
+    print(dictionary)
+    return render_template('micro.html', boroughs=boroughs, borough=borough, dictionary=dictionary)
 
 app.run(debug=True)
