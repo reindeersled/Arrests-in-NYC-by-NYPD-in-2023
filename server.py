@@ -41,12 +41,12 @@ def about():
 
 @app.route('/micro/<borough>')
 def micro(borough):
-    boroughs = ["bronx", "brooklyn", "manhattan", "queens", "staten_island"]
-
     f = open("data/Excel_dataset.json", "r")
     data = json.load(f)
 
     f.close()
+
+    boroughs = ["bronx", "brooklyn", "manhattan", "queens", "staten_island"]
 
     letter=""
 
@@ -62,7 +62,6 @@ def micro(borough):
         letter="S"
 
     bor_dictionary = {}
-
     for id_key in data:
         if data[id_key][3]==letter:
             bor_dictionary[id_key] = data[id_key]
@@ -79,7 +78,50 @@ def micro(borough):
             else:
                 dictionary[details[detail_id]].append(bor_dictionary[id][detail_id])
 
-    print(dictionary)
-    return render_template('micro.html', boroughs=boroughs, borough=borough, dictionary=dictionary)
+    female=0
+    male=0
+    for gender in dictionary["PERP_SEX"]:
+        if gender=="F":
+            female+=1
+        elif gender=="M":
+            male+=1
+
+    perp_race = {}
+    for race in dictionary["PERP_RACE"]:
+        if race not in perp_race.keys():
+            perp_race[race] = 1
+        else:
+            perp_race[race] += 1
+
+    age_group = {}
+    for age in dictionary["AGE_GROUP"]:
+        if age not in age_group.keys():
+            age_group[age] = 1
+        else:
+            age_group[age] += 1
+
+    borough_arrests = {}
+    for arrest in data:
+        if data[arrest][3] not in borough_arrests.keys():
+            borough_arrests[data[arrest][3]] = 1
+        else:
+            borough_arrests[data[arrest][3]] += 1
+    del borough_arrests["ARREST_BORO"]
+
+    crime_level = {}
+    for offense in dictionary["LAW_CAT_CD"]:
+        if offense not in crime_level.keys():
+            crime_level[offense] = 1
+        else:
+            crime_level[offense] += 1
+
+    crime_desc = {}
+    for desc in dictionary["OFNS_DESC"]:
+        if desc not in crime_desc.keys():
+            crime_desc[desc] = 1
+        else:
+            crime_desc[desc] += 1
+
+    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, male=male, perp_race=perp_race, age_group=age_group, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc)
 
 app.run(debug=True)
