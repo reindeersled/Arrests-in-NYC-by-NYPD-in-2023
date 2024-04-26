@@ -1,5 +1,11 @@
-<svg viewBox="0 0 700 300">
-
-    <rect width="500" height="200" x="100" y="50" fill="pink">
+<svg viewBox="0 0 1400 700" width="1400" height="700">
+    
+    {% for age in ages %}
+        <text x="{{140+loop.index0*100}}" y="250" fill="black" font-size="10">{{age}}</text>
+    {% endfor %}
+    
+    <line class="axis" x1="150" y1="240" x2="700" y2="240" stroke="black" stroke-width="2">
+    
+    <line class="axis" x1="150" y1="240" x2="150" y2="0" stroke="black" stroke-width="2">
 
 </svg>

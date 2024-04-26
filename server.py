@@ -99,6 +99,14 @@ def micro(borough):
             age_group[age] = 1
         else:
             age_group[age] += 1
+    ages=[]
+    for group in age_group:
+        ages.append(group)
+    ages=sorted(ages)
+    temp=ages[-1]
+    ages.pop()
+    ages.insert(0,temp)
+
 
     borough_arrests = {}
     for arrest in data:
@@ -122,6 +130,6 @@ def micro(borough):
         else:
             crime_desc[desc] += 1
 
-    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, male=male, perp_race=perp_race, age_group=age_group, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc)
+    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, male=male, perp_race=perp_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc)
 
 app.run(debug=True)
