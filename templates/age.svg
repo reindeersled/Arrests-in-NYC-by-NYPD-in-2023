@@ -1,11 +1,18 @@
 <svg viewBox="0 0 1400 700" width="1400" height="700">
-    
-    {% for age in ages %}
-        <text x="{{140+loop.index0*100}}" y="250" fill="black" font-size="10">{{age}}</text>
+
+
+    {% for i in range(0, 600) %}
+        {if i % 50 == 0}
+            <text class="axis_label" x="135" y="{{640-loop.index0*50}}" fill="black" font-size="20">{{i*50*50}} </text>
+            <line class="grid" x1="200" y1="{{640-loop.index0*50}}" x2="1200" y2="{{640-loop.index0*50}}" stroke="gray" stroke-width="2"/>
     {% endfor %}
     
-    <line class="axis" x1="150" y1="240" x2="700" y2="240" stroke="black" stroke-width="2">
-    
-    <line class="axis" x1="150" y1="240" x2="150" y2="0" stroke="black" stroke-width="2">
+    {% for age in ages %}
+        <rect class="age_g" x="{{240+loop.index0*200}}" y="{{640-(age_group[age]/50)}}" width="120" height="{{age_group[age]/50}}" fill="red"/>
+        <text class="age_label" x="{{275+loop.index0*200}}" y="665" fill="black" font-size="20">{{age}}</text>
+    {% endfor %}
+
+    <line class="axis" x1="200" y1="640" x2="1200" y2="640" stroke="black" stroke-width="5"/>
+    <line class="axis" x1="200" y1="0" x2="200" y2="642" stroke="black" stroke-width="5"/>
 
 </svg>

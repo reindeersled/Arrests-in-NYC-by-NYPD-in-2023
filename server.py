@@ -130,6 +130,8 @@ def micro(borough):
         else:
             crime_desc[desc] += 1
 
+    print(age_group)
+
     return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, male=male, perp_race=perp_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc)
 
 app.run(debug=True)
