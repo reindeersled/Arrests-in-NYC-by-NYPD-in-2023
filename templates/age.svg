@@ -1,18 +1,20 @@
-<svg viewBox="0 0 1400 700" width="1400" height="700">
+<svg viewBox="0 0 1400 900" width="1400" height="900">
 
 
-    {% for i in range(0, 600) %}
-        {if i % 50 == 0}
-            <text class="axis_label" x="135" y="{{640-loop.index0*50}}" fill="black" font-size="20">{{i*50*50}} </text>
-            <line class="grid" x1="200" y1="{{640-loop.index0*50}}" x2="1200" y2="{{640-loop.index0*50}}" stroke="gray" stroke-width="2"/>
+    {% for i in range(0, 16) %}
+        <text class="axis_label" x="130" y="{{830-loop.index0*50}}" fill="black" font-size="20">{{i*50*50}} </text>
+        <line class="grid" x1="200" y1="{{825-loop.index0*50}}" x2="1200" y2="{{825-loop.index0*50}}" stroke="gray" stroke-width="2"/>
     {% endfor %}
     
     {% for age in ages %}
-        <rect class="age_g" x="{{240+loop.index0*200}}" y="{{640-(age_group[age]/50)}}" width="120" height="{{age_group[age]/50}}" fill="red"/>
-        <text class="age_label" x="{{275+loop.index0*200}}" y="665" fill="black" font-size="20">{{age}}</text>
+        <rect class="age_g" x="{{240+loop.index0*200}}" y="{{825-(age_group[age]/50)}}" width="120" height="{{age_group[age]/50}}" fill="red"/>
+        <text class="age_label" x="{{275+loop.index0*200}}" y="845" fill="black" font-size="20">{{age}}</text>
     {% endfor %}
 
-    <line class="axis" x1="200" y1="640" x2="1200" y2="640" stroke="black" stroke-width="5"/>
-    <line class="axis" x1="200" y1="0" x2="200" y2="642" stroke="black" stroke-width="5"/>
+    <line class="axis" x1="200" y1="825" x2="1200" y2="825" stroke="black" stroke-width="5"/>
+    <line class="axis" x1="200" y1="55" x2="200" y2="827" stroke="black" stroke-width="5"/>
+
+    <text class="title" x="130" y="35" fill="black" font-size="45">Number of Crimes by Different Age Groups</text>
+    <text class="label" x="610" y="885" fill="black" font-size="35">Age Groups</text>
 
 </svg>

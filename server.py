@@ -115,6 +115,12 @@ def micro(borough):
         else:
             borough_arrests[data[arrest][3]] += 1
     del borough_arrests["ARREST_BORO"]
+    del borough_arrests["F"]
+
+    boro_avg = 0
+    for key in borough_arrests:
+        boro_avg += borough_arrests[key]
+    boro_avg = boro_avg/5
 
     crime_level = {}
     for offense in dictionary["LAW_CAT_CD"]:
@@ -130,8 +136,10 @@ def micro(borough):
         else:
             crime_desc[desc] += 1
 
+    b_key = {"B":"bronx", "S":"staten_island", "K":"brooklyn", "M":"manhattan", "Q":"queens"}
+
     print(age_group)
 
-    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, male=male, perp_race=perp_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc)
+    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, male=male, perp_race=perp_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
 
 app.run(debug=True)

@@ -20,7 +20,11 @@
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 {% for borough in boroughs %}
-                  <li><a class="dropdown-item" href="/micro/{{borough}}">{{borough | capitalize}}</a></li>
+                  {% if borough == 'staten_island'%}
+                  <li><a class="dropdown-item" href="/micro/{{borough}}">Staten Island</a></li>
+                  {% else%}
+                    <li><a class="dropdown-item" href="/micro/{{borough}}">{{borough | capitalize}}</a></li>
+                  {% endif %}
                 {% endfor %}
               </ul>
           </div>
