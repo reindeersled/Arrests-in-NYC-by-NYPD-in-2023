@@ -1,0 +1,74 @@
+function translate(x, y) {
+  return `translate(${x}, ${y})`;
+}
+
+class Slice extends React.Component {
+  render() {
+    let {value, fill, innerRadius = 0, outerRadius} = this.props;
+    // https://github.com/d3/d3/wiki/SVG-Shapes#arc
+    let arc = d3.svg.arc()
+      .innerRadius(innerRadius)
+      .outerRadius(outerRadius);
+    return (
+      <path d={arc(value)} fill={fill} />
+    );
+  }
+}
+
+class Pie extends React.Component {
+  constructor(props) {
+    super(props);
+    // https://github.com/d3/d3/wiki/Ordinal-Scales#category10
+    this.colorScale = d3.scale.category10();
+    this.renderSlice = this.renderSlice.bind(this);
+  }
+
+  render() {
+    let {x, y, data} = this.props;
+    // https://github.com/d3/d3/wiki/Pie-Layout
+    let pie = d3.layout.pie();
+    return (
+      <g transform={translate(x, y)}>
+        {/* Render a slice for each data point */}
+        {pie(data).map(this.renderSlice)}
+      </g>
+    );
+  }
+
+  renderSlice(value, i) {
+    return (
+      <Slice key={i}
+             outerRadius={this.props.radius}
+             value={value}
+             fill={this.colorScale(i)} />
+    );
+  }
+}
+
+class App extends React.Component {
+  render() {
+    // For a real world project, use something like
+    // https://github.com/digidem/react-dimensions
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let minViewportSize = Math.min(width, height);
+    // This sets the radius of the pie chart to fit within
+    // the current window size, with some additional padding
+    let radius = (minViewportSize * .9) / 2;
+    // Centers the pie chart
+    let x = width / 2;
+    let y = height / 2;
+
+    return (
+      <svg width="100%" height="100%">
+        <Pie x={x} y={y} radius={radius} data={this.props.data} />
+      </svg>
+    );
+  }
+}
+
+ReactDOM.render(
+  // App takes one prop: the pie chart data as an array of values
+  <App data={[5, 2, 7, 1, 1, 3, 4, 9]} />,
+  document.getElementById('app')
+);
