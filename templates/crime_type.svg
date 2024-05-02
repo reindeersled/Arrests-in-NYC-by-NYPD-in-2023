@@ -1,0 +1,17 @@
+<svg viewBox="0 0 600 600" width="600" height="600">
+
+  <circle r="200" cx="300" cy="300" fill="yellow"/>
+
+  <circle r="100" cx="300" cy="300" fill="yellow"
+      stroke="tomato"
+      stroke-width="200"
+      stroke-dasharray="calc(30 * 628.32 / 100) 628.32"
+
+      stroke="orange"
+      stroke-width="200"
+      stroke-dasharray="calc(40 * 628.32 / 100) 628.32"
+
+      stroke="red"
+      stroke-width="200"
+      stroke-dasharray="calc(20 * 628.32 / 100) 628.32"/>
+</svg>

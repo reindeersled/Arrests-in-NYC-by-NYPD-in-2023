@@ -85,6 +85,9 @@ def micro(borough):
         elif gender=="M":
             male+=1
 
+    female = female / (female+male) * 100
+    print(female)
+
     perp_race = {}
     for race in dictionary["PERP_RACE"]:
         if race not in perp_race.keys():
@@ -137,8 +140,6 @@ def micro(borough):
 
     b_key = {"B":"bronx", "S":"staten_island", "K":"brooklyn", "M":"manhattan", "Q":"queens"}
 
-    print(age_group)
-
-    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, male=male, perp_race=perp_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
+    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, perp_race=perp_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
 
 app.run(debug=True)
