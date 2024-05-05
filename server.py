@@ -99,7 +99,7 @@ def micro(borough):
         total += perp_race[race]
 
     for race in perp_race:
-        perp_race[race] = perp_race[race]/total * 100
+        perp_race[race] = (perp_race[race]/total) * 100
 
     races=[]
     for key in perp_race:
@@ -115,9 +115,6 @@ def micro(borough):
                 swapped = True
         if (swapped == False):
             break
-
-    print(perp_race)
-    print(races)
 
     age_group = {}
     for age in dictionary["AGE_GROUP"]:
@@ -163,7 +160,8 @@ def micro(borough):
             crime_desc[desc] += 1
 
     b_key = {"B":"bronx", "S":"staten_island", "K":"brooklyn", "M":"manhattan", "Q":"queens"}
+    color_palette=["darkred", "firebrick", "tomato", "darkorange"]
 
-    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, perp_race=perp_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
+    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, perp_race=perp_race, races=races, color_palette=color_palette, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
 
 app.run(debug=True)
