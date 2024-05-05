@@ -86,7 +86,6 @@ def micro(borough):
             male+=1
 
     female = female / (female+male) * 100
-    print(female)
 
     perp_race = {}
     for race in dictionary["PERP_RACE"]:
@@ -94,6 +93,31 @@ def micro(borough):
             perp_race[race] = 1
         else:
             perp_race[race] += 1
+
+    total=0
+    for race in perp_race:
+        total += perp_race[race]
+
+    for race in perp_race:
+        perp_race[race] = perp_race[race]/total * 100
+
+    races=[]
+    for key in perp_race:
+        races.append(key)
+    
+    n = len(races)
+    for i in range(n):
+        swapped = False
+
+        for j in range(0, n-i-1):
+            if perp_race[races[j]] > perp_race[races[j+1]]:
+                perp_race[races[j]], perp_race[races[j+1]] = perp_race[races[j+1]], perp_race[races[j]]
+                swapped = True
+        if (swapped == False):
+            break
+
+    print(perp_race)
+    print(races)
 
     age_group = {}
     for age in dictionary["AGE_GROUP"]:

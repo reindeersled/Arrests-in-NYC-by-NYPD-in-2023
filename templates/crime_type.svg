@@ -1,17 +1,15 @@
-<svg viewBox="0 0 600 600" width="600" height="600">
+<svg viewBox="0 0 800 800" width="800" height="800">
 
-  <circle r="200" cx="300" cy="300" fill="yellow"/>
+  <circle r="200" cx="400" cy="400" fill="skyblue"/>
 
-  <circle r="100" cx="300" cy="300" fill="yellow"
-      stroke="tomato"
+  <circle r="100" cx="400" cy="400" fill="skyblue"
+      stroke="pink"
       stroke-width="200"
-      stroke-dasharray="calc(30 * 628.32 / 100) 628.32"
+      stroke-dasharray="{{female * 628.32 / 100}} 628.32"/>
+    
+  <rect x="700" y="250" width="40" height="40" fill="skyblue"/>
+  <text x="750" y="275" fill="black" font-size="15">Male</text> 
 
-      stroke="orange"
-      stroke-width="200"
-      stroke-dasharray="calc(40 * 628.32 / 100) 628.32"
-
-      stroke="red"
-      stroke-width="200"
-      stroke-dasharray="calc(20 * 628.32 / 100) 628.32"/>
+  <rect x="700" y="310" width="40" height="40" fill="pink"/>
+  <text x="750" y="335" fill="black" font-size="15">Female</text> 
 </svg>
