@@ -17,11 +17,15 @@
       {% include 'navbar.html' %}
     </div>
 
-    <h1>{{borough | capitalize}}</h1>
+    {% if borough == 'staten_island' %}
+      <h1>Staten Island</h1>
+    {% else %}
+      <h1>{{borough | capitalize}}</h1>
+    {% endif %}
     
-    <!-- <div id="crime_type">
+    <div id="crime_type">
       {% include 'crime_type.svg' %}
-    </div> -->
+    </div>
 
     <div id="perp_sex">
       {% include 'perp_sex.svg' %}

@@ -94,11 +94,12 @@ def micro(borough):
         else:
             perp_race[race] += 1
 
-    total=0
+    race_total=0
     for race in perp_race:
-        total += perp_race[race]
+        race_total += perp_race[race]
     for race in perp_race:
-        perp_race[race] = (perp_race[race]/total) * 100
+        perp_race[race] = (perp_race[race]/race_total) * 100 #converting to percentages
+    
     races=[]
     for key in perp_race:
         races.append(key)
@@ -108,17 +109,21 @@ def micro(borough):
         swapped = False
         for j in range(0, n-i-1):
             if perp_race[races[j]] > perp_race[races[j+1]]:
-                perp_race[races[j]], perp_race[races[j+1]] = perp_race[races[j+1]], perp_race[races[j]]
+                perp_race[races[j]], perp_race[races[j+1]] = perp_race[races[j+1]], perp_race[races[j]] #sorting my perp_races by value
                 swapped = True
         if (swapped == False):
             break
-    
-    for i in range(len(races),0):
-        for j in range(len(races),0):
-            if j != i:
-                perp_race[races[i]] += perp_race[races[j]]
-    
-    print(races, perp_race)
+
+    pie_race = {}
+    for key in perp_race:
+        if key not in pie_race.keys():
+            pie_race[key] = perp_race[key]
+        
+    for i in range(len(races)):
+        if i > 0:
+            for j in range(0, i):
+                pie_race[races[i]] += perp_race[races[j]]
+    races.reverse()
 
     age_group = {}
     for age in dictionary["AGE_GROUP"]:
@@ -149,12 +154,30 @@ def micro(borough):
         boro_avg += borough_arrests[key]
     boro_avg = boro_avg/5
 
-    crime_level = {}
+    crime_level = {"F":0, "M":0, "V":0}
     for offense in dictionary["LAW_CAT_CD"]:
-        if offense not in crime_level.keys():
-            crime_level[offense] = 1
-        else:
+        if offense in crime_level.keys():
             crime_level[offense] += 1
+
+    level_total=0
+    for level in crime_level:
+        level_total+=crime_level[level]
+    for level in crime_level:
+        crime_level[level] = (crime_level[level]/level_total) * 100
+
+    c_levels=[]
+    for key in crime_level:
+        c_levels.append(key)
+
+    for i in range(len(c_levels)):
+        swapped=False
+        for j in range(0, (len(c_levels)-i-1)):
+            if crime_level[c_levels[j]]>crime_level[c_levels[j+1]]:
+                crime_level[c_levels[j]], crime_level[c_levels[j+1]] = crime_level[c_levels[j+1]], crime_level[c_levels[j]]
+    #c_levels is going from low to high
+    c_levels.reverse()
+    
+    level_key={"F":"Felony", "M":"Misdemeanor", "V":"Violation"}
 
     crime_desc = {}
     for desc in dictionary["OFNS_DESC"]:
@@ -166,6 +189,8 @@ def micro(borough):
     b_key = {"B":"bronx", "S":"staten_island", "K":"brooklyn", "M":"manhattan", "Q":"queens"}
     color_palette=["darkred", "firebrick", "tomato", "darkorange"]
 
-    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, perp_race=perp_race, races=races, color_palette=color_palette, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
+    print(crime_level)
+
+    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, perp_race=perp_race, races=races, pie_race=pie_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, c_levels=c_levels, level_key=level_key, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
 
 app.run(debug=True)

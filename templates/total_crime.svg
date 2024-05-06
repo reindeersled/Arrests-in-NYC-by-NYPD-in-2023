@@ -1,19 +1,20 @@
 <svg viewBox="0 0 1400 900" width="1400" height="900">
 
-    <line id="avg" x1="{{boro_avg/70}}" y1="55" x2="{{boro_avg/70}}" y2="645" stroke="gray" stroke-width="3"/>
-
     {% for key in borough_arrests %}
-        <rect id="{{key}}" x="130" y="{{90+loop.index0*110}}" width="{{borough_arrests[key]/70}}" height="75" fill="red"/>
+        <rect id="{{key}}" x="130" y="{{90+loop.index0*110}}" width="{{borough_arrests[key]/70}}" height="75" fill="maroon"/>
 
         {% if key == 'S'%}
             <text class="b_label" x="{{145+borough_arrests[key]/70}}" y="{{135+loop.index0*110}}" fill="black" font-size="25">Staten Island</text>
         {% else %}
             <text class="b_label" x="{{145+borough_arrests[key]/70}}" y="{{135+loop.index0*110}}" fill="black" font-size="25">{{b_key[key] | capitalize}}</text>
         {% endif %}
+        <text x="{{60+borough_arrests[key]/70}}" y="{{135+loop.index0*110}}" fill="white" font-size="20">{{borough_arrests[key]}}</text>
     {% endfor %}
 
 
     <line class="axis" x1="130" y1="55" x2="130" y2="645" stroke="black" stroke-width="5"/>
     <text class="title" x="130" y="35" fill="black" font-size="45">Total Number of Crimes in Each Borough</text>
 
+    <line id="avg" x1="{{boro_avg/70}}" y1="55" x2="{{boro_avg/70}}" y2="645" stroke="black" stroke-width="3" stroke-opacity="0.3"/>
+    <text x="{{boro_avg/70-40}}" y="666" fill="black" font-size="20">{{boro_avg}}</text>
 </svg>
