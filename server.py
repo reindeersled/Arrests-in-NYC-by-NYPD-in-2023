@@ -30,7 +30,13 @@ def index():
         elif data[id_key][3] == "Q":
             dictionary["queens"].append(data[id_key]) 
 
-    return render_template('index.html', boroughs=boroughs, dict=dictionary)
+    del data["ARREST_KEY"]
+    for id_key in data:
+        data[id_key][9] = float(data[id_key][9])
+        data[id_key][10] = float(data[id_key][10]) #do i need to get rid of the /n?
+        print(data[id_key][9], data[id_key][10])
+
+    return render_template('index.html', boroughs=boroughs, dict=dictionary, data=data)
 
 @app.route('/about')
 def about():
