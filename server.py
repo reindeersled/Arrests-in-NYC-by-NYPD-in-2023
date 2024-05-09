@@ -30,7 +30,7 @@ def index():
         elif data[id_key][3] == "Q":
             dictionary["queens"].append(data[id_key]) 
 
-    color_dict={"B": "maroon", "K": "orange", "Q": "yellow", "M": "brown", "S": "green"}
+    color_dict={"B": "firebrick", "K": "blue", "Q": "green", "M": "orange", "S": "purple"}
 
     del data["ARREST_KEY"]
     for id_key in data:
