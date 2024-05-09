@@ -326,7 +326,13 @@
 
   <line id="bottom" x1="0" y1="757" x2="800" y2="757" stroke="green" stroke-width="5"/> lat = 40.49 -->
 
+  <!-- longitude = 800 pixels, 0.59 degrees (left to right)
+  so 1 pixel = 0.0007375
+
+  latitude = 757 pixels, 0.43 degrees (up and down)
+  so 1 pixel = 0.0005680317 -->
+
   {% for arrest in data %}
-   <circle class="arrest" r="20" cx="{{data[arrest][10]-74.27}}" cy="{{data[arrest][9]-40.92}}" fill="red"/>
+   <circle class="arrest" r="1" cx="{{(74.27+data[arrest][10])/0.0007375}}" cy="{{(40.92-data[arrest][9])/0.0005670317}}" fill="red" stroke="transparent"/>
   {% endfor %}
 </svg>
