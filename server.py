@@ -162,7 +162,7 @@ def micro(borough):
     boro_avg = 0
     for key in borough_arrests:
         boro_avg += borough_arrests[key]
-    boro_avg = boro_avg/5
+    boro_avg = int(boro_avg/5)
 
     crime_level = {"F":0, "M":0, "V":0}
     for offense in dictionary["LAW_CAT_CD"]:
@@ -200,14 +200,13 @@ def micro(borough):
             crime_desc[desc] += 1
 
     b_key = {"B":"bronx", "S":"staten_island", "K":"brooklyn", "M":"manhattan", "Q":"queens"}
-    color_palette=["darkred", "firebrick", "tomato", "darkorange"]
 
     total_crime_pie = {}
     for boro in boroughs:
         if boro == borough:
             total_crime_pie[boro] = 1
         else:
-            total_crime_pie[boro] = .7
+            total_crime_pie[boro] = .5
     print(total_crime_pie)
 
     return render_template('micro.html', boroughs=boroughs, borough=borough, total_crime_pie=total_crime_pie, female=female, perp_race=perp_race, races=races, pie_race=pie_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, c_levels=c_levels, level_key=level_key, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
