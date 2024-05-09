@@ -30,13 +30,15 @@ def index():
         elif data[id_key][3] == "Q":
             dictionary["queens"].append(data[id_key]) 
 
+    color_dict={"B": "maroon", "K": "orange", "Q": "yellow", "M": "brown", "S": "green"}
+
     del data["ARREST_KEY"]
     for id_key in data:
         data[id_key][9] = float(data[id_key][9])
         data[id_key][10] = float(data[id_key][10]) #do i need to get rid of the /n?
         print(data[id_key][9], data[id_key][10])
 
-    return render_template('index.html', boroughs=boroughs, dict=dictionary, data=data)
+    return render_template('index.html', boroughs=boroughs, dict=dictionary, data=data, color_dict=color_dict)
 
 @app.route('/about')
 def about():
@@ -91,7 +93,7 @@ def micro(borough):
         elif gender=="M":
             male+=1
 
-    female = female / (female+male) * 100
+    female = float(str(female / (female+male) * 100)[:3])
 
     perp_race = {}
     for race in dictionary["PERP_RACE"]:
@@ -130,6 +132,9 @@ def micro(borough):
             for j in range(0, i):
                 pie_race[races[i]] += perp_race[races[j]]
     races.reverse()
+
+    for race in perp_race:
+        perp_race[race] = float(str(perp_race[race])[:3])
 
     age_group = {}
     for age in dictionary["AGE_GROUP"]:
@@ -182,6 +187,9 @@ def micro(borough):
                 crime_level[c_levels[j]], crime_level[c_levels[j+1]] = crime_level[c_levels[j+1]], crime_level[c_levels[j]]
     #c_levels is going from low to high
     c_levels.reverse()
+
+    for crime in crime_level:
+        crime_level[crime] = float(str(crime_level[crime])[:3])
     
     level_key={"F":"Felony", "M":"Misdemeanor", "V":"Violation"}
 
@@ -195,8 +203,14 @@ def micro(borough):
     b_key = {"B":"bronx", "S":"staten_island", "K":"brooklyn", "M":"manhattan", "Q":"queens"}
     color_palette=["darkred", "firebrick", "tomato", "darkorange"]
 
-    print(crime_level)
+    total_crime_pie = {}
+    for boro in boroughs:
+        if boroughs[boro] == borough:
+            total_crime_pie[boro] = 100
+        else:
+            total_crime_pie[boro] = 50
+    print(total_crime_pie)
 
-    return render_template('micro.html', boroughs=boroughs, borough=borough, female=female, perp_race=perp_race, races=races, pie_race=pie_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, c_levels=c_levels, level_key=level_key, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
+    return render_template('micro.html', boroughs=boroughs, borough=borough, total_crime_pie=total_crime_pie, female=female, perp_race=perp_race, races=races, pie_race=pie_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, c_levels=c_levels, level_key=level_key, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
 
 app.run(debug=True)

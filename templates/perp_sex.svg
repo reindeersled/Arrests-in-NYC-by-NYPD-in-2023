@@ -1,16 +1,16 @@
-<svg viewBox="0 0 800 700" width="800" height="700">
+<svg viewBox="0 0 900 700" width="900" height="700">
 
   <text x="150" y="120" font-size="45" fill="black">Male vs Female Perpetrators</text>
-  <circle r="200" cx="400" cy="400" fill="wheat"/>
+  <circle r="200" cx="400" cy="400" fill="seashell"/>
 
-  <circle r="100" cx="400" cy="400" fill="wheat"
-      stroke="maroon"
+  <circle r="100" cx="400" cy="400" fill="seashell"
+      stroke="firebrick"
       stroke-width="200"
       stroke-dasharray="{{female * 628.32 / 100}} 628.32"/>
     
-  <rect x="700" y="250" width="40" height="40" fill="wheat"/>
+  <rect x="700" y="250" width="40" height="40" fill="seashell"/>
   <text x="750" y="275" fill="black" font-size="15">Male, {{100-female}}%</text> 
 
-  <rect x="700" y="310" width="40" height="40" fill="maroon"/>
+  <rect x="700" y="310" width="40" height="40" fill="firebrick"/>
   <text x="750" y="335" fill="black" font-size="15">Female, {{female}}%</text> 
 </svg>

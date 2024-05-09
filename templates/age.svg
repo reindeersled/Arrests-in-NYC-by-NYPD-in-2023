@@ -7,7 +7,7 @@
     {% endfor %}
     
     {% for age in ages %}
-        <rect class="age_g" x="{{240+loop.index0*200}}" y="{{825-(age_group[age]/50)}}" width="120" height="{{age_group[age]/50}}" fill="maroon"/>
+        <rect class="age_g" x="{{240+loop.index0*200}}" y="{{825-(age_group[age]/50)}}" width="120" height="{{age_group[age]/50}}" fill="firebrick"/>
         <text class="age_label" x="{{275+loop.index0*200}}" y="845" fill="black" font-size="20">{{age}}</text>
         <text x="{{275+loop.index0*200}}" y="{{815-(age_group[age]/50)}}" fill="black" font-size="20">{{age_group[age]}}</text>
     {% endfor %}
@@ -17,5 +17,6 @@
 
     <text class="title" x="130" y="35" fill="black" font-size="45">Number of Crimes by Different Age Groups</text>
     <text class="label" x="610" y="885" fill="black" font-size="35">Age Groups</text>
+    <text class="label" x="10" y="500" fill="black" font-size="35" transform="rotate(270,90,490)" >Number of Crimes</text>
 
 </svg>
