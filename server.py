@@ -76,7 +76,6 @@ def micro(borough):
     details=["ARREST_DATE","OFNS_DESC","LAW_CAT_CD","ARREST_BORO","AGE_GROUP","PERP_SEX","PERP_RACE","X_COORD_CD","Y_COORD_CD","Latitude","Longitude"]
     
     dictionary={}
-    
     for id in bor_dictionary:
         for detail_id in range(0, len(details)):
             if details[detail_id] not in dictionary.keys():
@@ -205,10 +204,10 @@ def micro(borough):
 
     total_crime_pie = {}
     for boro in boroughs:
-        if boroughs[boro] == borough:
-            total_crime_pie[boro] = 100
+        if boro == borough:
+            total_crime_pie[boro] = 1
         else:
-            total_crime_pie[boro] = 50
+            total_crime_pie[boro] = .7
     print(total_crime_pie)
 
     return render_template('micro.html', boroughs=boroughs, borough=borough, total_crime_pie=total_crime_pie, female=female, perp_race=perp_race, races=races, pie_race=pie_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, c_levels=c_levels, level_key=level_key, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)

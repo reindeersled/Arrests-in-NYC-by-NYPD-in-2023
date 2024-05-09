@@ -1,12 +1,15 @@
 <svg viewBox="0 0 1400 900" width="1400" height="900">
 
+    <line id="avg" x1="{{boro_avg/70}}" y1="55" x2="{{boro_avg/70}}" y2="645" stroke="black" stroke-width="3" stroke-opacity="0.3"/>
+    <text x="{{boro_avg/70-40}}" y="666" fill="black" font-size="20">{{boro_avg}}</text>
+
     {% for key in borough_arrests %}
-        <rect id="{{key}}" x="130" y="{{90+loop.index0*110}}" width="{{borough_arrests[key]/70}}" height="75" fill="firebrick" fill-opacity="{{total_crime_pie[borough]}}"/>
+        <rect id="{{key}}" x="130" y="{{90+loop.index0*110}}" width="{{borough_arrests[key]/70}}" height="75" fill="firebrick" fill-opacity="{{total_crime_pie[b_key[key]]}}"/>
 
         {% if key == 'S'%}
             <text class="b_label" x="{{145+borough_arrests[key]/70}}" y="{{135+loop.index0*110}}" fill="black" font-size="25">Staten Island</text>
         {% else %}
-            <text class="b_label" x="{{145+borough_arrests[key]/70}}" y="{{135+loop.index0*110}}" fill="black" font-size="25">{{b_key[key] | capitalize}}</text>
+            <text class="b_label" x="{{145+borough_arrests[key]/70}}" y="{{135+loop.index0*110}}" fill="black" font-size="25" fill-opacity="{{total_crime_pie[b_key[key]]}}" >{{b_key[key] | capitalize}}</text>
         {% endif %}
         <text x="{{60+borough_arrests[key]/70}}" y="{{135+loop.index0*110}}" fill="white" font-size="20">{{borough_arrests[key]}}</text>
     {% endfor %}
@@ -16,7 +19,4 @@
     <text class="title" x="130" y="35" fill="black" font-size="45">Total Number of Arrests in Each Borough</text>
     <text class="label" x="10" y="500" fill="black" font-size="35" transform="rotate(270,10,420)">Boroughs</text>
     <text class="label" x="500" y="710" fill="black" font-size="35" >Number of Arrests</text>
-
-    <line id="avg" x1="{{boro_avg/70}}" y1="55" x2="{{boro_avg/70}}" y2="645" stroke="black" stroke-width="3" stroke-opacity="0.3"/>
-    <text x="{{boro_avg/70-40}}" y="666" fill="black" font-size="20">{{boro_avg}}</text>
 </svg>
