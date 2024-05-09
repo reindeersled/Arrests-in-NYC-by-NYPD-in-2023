@@ -335,4 +335,9 @@
   {% for arrest in data %}
    <circle class="arrest" r=".7" cx="{{(74.27+data[arrest][10])/0.0007375}}" cy="{{(40.92-data[arrest][9])/0.0005670317}}" fill="{{color_dict[data[arrest][3]]}}" stroke="transparent"/>
   {% endfor %}
+
+  {% for borough in color_dict %}
+   <rect x="{{200+(loop.index0*120)}}" y="700" width="20" height="20" fill="{{color_dict[borough]}}" stroke="transparent"/>
+   <text x="{{225+(loop.index0*120)}}" y="715" font-size="15" fill="black">{{boro_key[borough]}}</text>
+  {% endfor %}
 </svg>

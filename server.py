@@ -13,6 +13,7 @@ def index():
     f.close()
 
     boroughs = ["bronx", "brooklyn", "manhattan", "queens", "staten_island"]
+    boro_key = {"B":"Bronx", "S":"Staten Island", "K":"Brooklyn", "M":"Manhattan", "Q":"Queens"}
 
     dictionary = {}
     for borough in boroughs:
@@ -36,9 +37,8 @@ def index():
     for id_key in data:
         data[id_key][9] = float(data[id_key][9])
         data[id_key][10] = float(data[id_key][10]) #do i need to get rid of the /n?
-        print(data[id_key][9], data[id_key][10])
 
-    return render_template('index.html', boroughs=boroughs, dict=dictionary, data=data, color_dict=color_dict)
+    return render_template('index.html', boroughs=boroughs, dict=dictionary, data=data, color_dict=color_dict, boro_key=boro_key)
 
 @app.route('/about')
 def about():
