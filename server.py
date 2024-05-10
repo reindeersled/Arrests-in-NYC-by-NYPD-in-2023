@@ -188,7 +188,7 @@ def micro(borough):
     c_levels.reverse()
 
     for crime in crime_level:
-        crime_level[crime] = float(str(crime_level[crime])[:3])
+        crime_level[crime] = float(str(crime_level[crime])[:7])
     
     level_key={"F":"Felony", "M":"Misdemeanor", "V":"Violation"}
 
@@ -209,6 +209,27 @@ def micro(borough):
             total_crime_pie[boro] = .5
     print(total_crime_pie)
 
-    return render_template('micro.html', boroughs=boroughs, borough=borough, total_crime_pie=total_crime_pie, female=female, perp_race=perp_race, races=races, pie_race=pie_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, c_levels=c_levels, level_key=level_key, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
+    com_race=""
+    race_num=0
+    for race in perp_race:
+        if perp_race[race] > race_num:
+            com_race=race
+            race_num=perp_race[race]
+
+    com_age=""
+    age_num=0
+    for age in age_group:
+        if age_group[age] > age_num:
+            com_age=age
+            age_num=age_group[age]
+
+    boro_place={"manhattan": "third", "queens": "second to last", "staten_island": "last", "bronx": "second", "brooklyn": "first"}
+
+    if borough == "staten_island":
+        boro = "Staten Island"
+    else:
+        boro = borough
+
+    return render_template('micro.html', boro=boro, com_race=com_race, com_age=com_age, boro_place=boro_place, boroughs=boroughs, borough=borough, total_crime_pie=total_crime_pie, female=female, perp_race=perp_race, races=races, pie_race=pie_race, age_group=age_group, ages=ages, borough_arrests=borough_arrests, crime_level=crime_level, c_levels=c_levels, level_key=level_key, crime_desc=crime_desc, b_key=b_key, boro_avg=boro_avg)
 
 app.run(debug=True)

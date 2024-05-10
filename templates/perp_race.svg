@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1100 700" width="1100" height="700">
 
-  <text x="150" y="120" font-size="45" fill="black">Race of Perpetrator</text>
+  <text x="150" y="120" font-size="45" fill="black">Race of Perpetrators</text>
   <circle r="200" cx="400" cy="400" fill="seashell"/>
 
   {% for race in races %}

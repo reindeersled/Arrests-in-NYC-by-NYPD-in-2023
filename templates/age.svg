@@ -3,7 +3,7 @@
 
     {% for i in range(0, 16) %}
         <text class="axis_label" x="130" y="{{830-loop.index0*50}}" fill="black" font-size="20">{{i*50*50}} </text>
-        <line class="grid" x1="200" y1="{{825-loop.index0*50}}" x2="1200" y2="{{825-loop.index0*50}}" stroke="gray" stroke-width="2"/>
+        <line class="grid" x1="200" y1="{{825-loop.index0*50}}" x2="1200" y2="{{825-loop.index0*50}}" stroke="gray" stroke-opacity=".5" stroke-width="2"/>
     {% endfor %}
     
     {% for age in ages %}
@@ -16,7 +16,7 @@
     <line class="axis" x1="200" y1="55" x2="200" y2="827" stroke="black" stroke-width="5"/>
 
     <text class="title" x="130" y="35" fill="black" font-size="45">Number of Crimes by Different Age Groups</text>
-    <text class="label" x="610" y="885" fill="black" font-size="35">Age Groups</text>
+    <text class="label" x="570" y="885" fill="black" font-size="35">Age Groups (years)</text>
     <text class="label" x="10" y="500" fill="black" font-size="35" transform="rotate(270,90,490)" >Number of Crimes</text>
 
 </svg>
